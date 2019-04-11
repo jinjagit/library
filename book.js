@@ -20,8 +20,27 @@ function render(array) {
   }
 }
 
+function addBook() {
+  let title = document.getElementById("title").value;
+  let author = document.getElementById("author").value;
+  let pages = document.getElementById("pages").value;
+  let haveRead = false;
+  let reg = /^[0-9]+$/;
+
+  if (title == "" || author == "" || pages == "") {
+    alert("Error: Input is empty!");
+  } else if (!reg.test(pages)) {
+    alert("Error: Pages must be a number");
+  } else {
+    document.form.read.checked? haveRead = true : haveRead = false;
+    newBook = new Book(title, author, pages, haveRead);
+  }
+  console.log(newBook);
+}
+
 let formBook = document.querySelector('.form-book');
 let formShow = document.getElementById('form-show');
+let formSubmit = document.getElementById('form-submit');
 
 formShow.addEventListener("click", function() {
   formBook.classList.toggle("visible");
@@ -30,6 +49,11 @@ formShow.addEventListener("click", function() {
   } else {
     formShow.innerHTML = "Add book";
   }
+})
+
+formSubmit.addEventListener("click", function() {
+  addBook();
+  //render(myLibrary);
 })
 
 let myLibrary = [];

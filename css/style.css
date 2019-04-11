@@ -21,6 +21,31 @@ th {
   color: white;
 }
 
-.center_box {
+form {
+  display: inline-block;
+}
+
+.form-book {
+  visibility: hidden;
+}
+
+.visible {
+  visibility: visible;
+}
+
+.center {
+  display: block;
+  margin: auto;
+}
+
+.form-box {
+  text-align: center;
+}
+
+.form-box > * {
+  text-align: left;
+}
+
+.container {
   width: 100%
 }

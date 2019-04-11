@@ -6,8 +6,17 @@ function Book(title, author, pages, haveRead) {
 }
 
 function render(array) {
+  // remove any library entries from table before (re)creating entries
+  let entries = document.getElementsByClassName('entry');
+
+  for (let i = entries.length - 1; i >= 0; i--) {
+    tableBooks.removeChild(entries[i]);
+  }
+
+  // add library entries to table
   for (let i = 0; i < myLibrary.length; i++) {
     const row = document.createElement('tr');
+    row.classList.add('entry');
 
     for (let j = 0; j < 4; j++) {
       const data = document.createElement('td');
@@ -33,9 +42,8 @@ function addBook() {
     alert("Error: Pages must be a number");
   } else {
     document.form.read.checked? haveRead = true : haveRead = false;
-    newBook = new Book(title, author, pages, haveRead);
+    myLibrary.push(new Book(title, author, pages, haveRead));
   }
-  console.log(newBook);
 }
 
 let formBook = document.querySelector('.form-book');
@@ -53,7 +61,7 @@ formShow.addEventListener("click", function() {
 
 formSubmit.addEventListener("click", function() {
   addBook();
-  //render(myLibrary);
+  render(myLibrary);
 })
 
 let myLibrary = [];

@@ -15,18 +15,18 @@ function render(array) {
 
   // add data row(s) to table
   for (let i = 0; i < myLibrary.length; i++) {
-    const row = document.createElement('tr');
+    let row = document.createElement('tr');
     row.classList.add('entry');
 
     for (let j = 0; j < 3; j++) {
-      const data = document.createElement('td');
+      let data = document.createElement('td');
       data.innerHTML = myLibrary[i][Object.keys(myLibrary[i])[j]];
       if (j > 1) { data.style.textAlign = "center"; }
       row.appendChild(data);
     }
 
     // add 'have read?' button to row
-    let newCell1 = row.insertCell(3)
+    let newCell1 = row.insertCell(3);
     let btnRead = document.createElement('input');
     btnRead.type = 'button';
     btnRead.value = `${myLibrary[i][Object.keys(myLibrary[i])[3]]}`;
@@ -135,6 +135,7 @@ else {
   defaultLibrary();
 }
 
+let tableBooks = document.getElementById("table-books");
 let formBook = document.querySelector('.form-book');
 let formShow = document.getElementById('form-show');
 let formSubmit = document.getElementById('form-submit');
@@ -151,7 +152,5 @@ formShow.addEventListener("click", function() {
 formSubmit.addEventListener("click", function() {
   addBook();
 });
-
-let tableBooks = document.getElementById("table-books");
 
 render(myLibrary);

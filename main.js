@@ -6,14 +6,14 @@ function Book(title, author, pages, haveRead) {
 }
 
 function render(array) {
-  // remove any library entries from table before (re)creating entries
+  // remove any data row(s) from table before (re)creating
   let entries = document.getElementsByClassName('entry');
 
   for (let i = entries.length - 1; i >= 0; i--) {
     tableBooks.removeChild(entries[i]);
   }
 
-  // add library entries to table
+  // add data row(s) to table
   for (let i = 0; i < myLibrary.length; i++) {
     const row = document.createElement('tr');
     row.classList.add('entry');
@@ -24,6 +24,16 @@ function render(array) {
       if (j > 1) { data.style.textAlign = "center"; }
       row.appendChild(data);
     }
+    // add 'remove' button to end of row
+    const btnRemove = document.createElement('input');
+    btnRemove.type = 'button';
+    btnRemove.value = "Remove";
+    btnRemove.id = i.toString();
+    btnRemove.classList.add('btn-table');
+    btnRemove.addEventListener("click", function() {
+      removeBook(this.id);
+    });
+    row.appendChild(btnRemove);
 
     tableBooks.appendChild(row);
   }
@@ -46,6 +56,11 @@ function addBook() {
   }
 }
 
+function removeBook(id) {
+  myLibrary.splice(id, 1);
+  render(myLibrary);
+}
+
 let formBook = document.querySelector('.form-book');
 let formShow = document.getElementById('form-show');
 let formSubmit = document.getElementById('form-submit');
@@ -57,12 +72,12 @@ formShow.addEventListener("click", function() {
   } else {
     formShow.innerHTML = "Add book";
   }
-})
+});
 
 formSubmit.addEventListener("click", function() {
   addBook();
   render(myLibrary);
-})
+});
 
 let myLibrary = [];
 

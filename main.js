@@ -1,3 +1,6 @@
+// Library, by Simon Tharby, 2019
+// Add and remove books. Store library locally, if local storage available.
+
 function Book(title, author, pages, haveRead) {
   this.title = title
   this.author = author

@@ -53,6 +53,9 @@ function render(array) {
 
     tableBooks.appendChild(row);
   }
+
+  localStorage.clear();
+  localStorage.setItem('library', JSON.stringify(myLibrary));
 }
 
 function addBook() {
@@ -113,11 +116,23 @@ function storageAvailable(type) { // from: https://developer.mozilla.org
     }
 }
 
+function defaultLibrary() {
+  myLibrary.push(new Book('The Thing', 'Some Dude', 567, false));
+  myLibrary.push(new Book('Ubiq', 'Philip K. Dick', 223, true));
+}
+
+let myLibrary = [];
+
 if (storageAvailable('localStorage')) {
-  console.log("Yippee! We can use localStorage awesomeness");
+  if(!localStorage.getItem('library')) {
+    defaultLibrary();
+    localStorage.setItem('library', JSON.stringify(myLibrary));
+  } else {
+    myLibrary = JSON.parse(localStorage.getItem('library'));
+  }
 }
 else {
-  console.log("Too bad, no localStorage for us");
+  defaultLibrary();
 }
 
 let formBook = document.querySelector('.form-book');
@@ -137,28 +152,6 @@ formSubmit.addEventListener("click", function() {
   addBook();
 });
 
-let myLibrary = [];
-
-myLibrary.push(new Book('The Thing', 'Some Dude', 567, false));
-myLibrary.push(new Book('Ubiq', 'Philip K. Dick', 223, true));
-
 let tableBooks = document.getElementById("table-books");
 
 render(myLibrary);
-
-
-
-
-// Unused, for now:
-
-//data.classList.add('data');
-//data.id = i.toString();
-
-// It's better to write functions in prototype, so that a single instance of the
-// function is shared between all child objects.
-
-/*
-Book.prototype.info = function() {
-  return `${this.title}, by ${this.author}, ${this.pages} pages, ${this.haveRead == true ? 'have read' : 'not read yet'}`;
-}
-*/

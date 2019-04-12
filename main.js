@@ -24,7 +24,11 @@ function render(array) {
     for (let j = 0; j < 3; j++) {
       let data = document.createElement('td');
       data.innerHTML = myLibrary[i][Object.keys(myLibrary[i])[j]];
-      if (j > 1) { data.style.textAlign = "center"; }
+      if (j > 1) {
+        data.style.textAlign = "center";
+      } else {
+        data.style.paddingLeft = "10px";
+      }
       row.appendChild(data);
     }
 

@@ -132,9 +132,11 @@ if (storageAvailable('localStorage')) {
     localStorage.setItem('library', JSON.stringify(myLibrary));
   } else {
     myLibrary = JSON.parse(localStorage.getItem('library'));
+    if (myLibrary === undefined || myLibrary.length == 0) {
+      defaultLibrary();
+    }
   }
-}
-else {
+} else {
   defaultLibrary();
 }
 

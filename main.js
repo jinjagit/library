@@ -120,7 +120,7 @@ function storageAvailable(type) { // from: https://developer.mozilla.org
 }
 
 function defaultLibrary() {
-  myLibrary.push(new Book('The Thing', 'Some Dude', 567, false));
+  myLibrary.push(new Book('The Thing', 'Alan Dean Foster', 347, false));
   myLibrary.push(new Book('Ubiq', 'Philip K. Dick', 223, true));
 }
 

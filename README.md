@@ -4,7 +4,7 @@ Simon Tharby's solution to [Project: Library](https://www.theodinproject.com/cou
 
 [View in browser](https://jinjagit.github.io/library/)
 
-  * Uses local storage to store library entries (books), if available (if run locally).
+  * Uses local storage to store library entries (books), if available.
 
 ### Getting started:
 

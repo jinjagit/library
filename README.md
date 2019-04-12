@@ -6,6 +6,6 @@ Simon Tharby's solution to [Project: Library](https://www.theodinproject.com/cou
 
   * Uses local storage to store library entries (books), if available (if run locally).
 
-## Getting started:
+### Getting started:
 
-To get started with the app, clone / download the repo and open index.html in a browser:
+To get started with the app, clone / download the repo and open index.html in a browser.

@@ -58,3 +58,7 @@ form {
 .btn-table {
   width: 100%;
 }
+
+.btn-table:hover, .btn:hover{
+  background-color: #ccc;
+}

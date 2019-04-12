@@ -18,14 +18,29 @@ function render(array) {
     const row = document.createElement('tr');
     row.classList.add('entry');
 
-    for (let j = 0; j < 4; j++) {
+    for (let j = 0; j < 3; j++) {
       const data = document.createElement('td');
       data.innerHTML = myLibrary[i][Object.keys(myLibrary[i])[j]];
       if (j > 1) { data.style.textAlign = "center"; }
       row.appendChild(data);
     }
+
+    // add 'have read?' button to row
+    let newCell1 = row.insertCell(3)
+    let btnRead = document.createElement('input');
+    btnRead.type = 'button';
+    btnRead.value = `${myLibrary[i][Object.keys(myLibrary[i])[3]]}`;
+    btnRead.id = `read${i}`;
+    btnRead.classList.add('btn-table');
+    btnRead.addEventListener("click", function() {
+      toggleRead(this.id.split('read')[1]);
+    });
+    newCell1.appendChild(btnRead);
+    row.appendChild(newCell1);
+
     // add 'remove' button to end of row
-    const btnRemove = document.createElement('input');
+    let newCell2 = row.insertCell(4)
+    let btnRemove = document.createElement('input');
     btnRemove.type = 'button';
     btnRemove.value = "Remove";
     btnRemove.id = i.toString();
@@ -33,7 +48,8 @@ function render(array) {
     btnRemove.addEventListener("click", function() {
       removeBook(this.id);
     });
-    row.appendChild(btnRemove);
+    newCell2.appendChild(btnRemove);
+    row.appendChild(newCell2);
 
     tableBooks.appendChild(row);
   }
@@ -56,8 +72,17 @@ function addBook() {
   }
 }
 
-function removeBook(id) {
-  myLibrary.splice(id, 1);
+function removeBook(index) {
+  myLibrary.splice(index, 1);
+  render(myLibrary);
+}
+
+function toggleRead(index) {
+  if (myLibrary[index]['haveRead'] == true) {
+    myLibrary[index]['haveRead'] = false;
+  } else {
+    myLibrary[index]['haveRead'] = true;
+  }
   render(myLibrary);
 }
 
